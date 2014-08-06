@@ -27,12 +27,12 @@ end
 def add_term
   new_term = Term.new
   new_term.save
-  puts 'What word would you like to add?'
   add_new_word(new_term)
   add_new_definition(new_term)
 end
 
 def add_new_word(term)
+  puts "add a new word"
   input_add_term = gets.chomp
   new_word = Word.new(input_add_term)
   new_word.save
@@ -50,7 +50,31 @@ def add_new_definition(term)
 end
 
 def modify_term
-  search_term
+
+  puts "Enter a term to modify"
+  Term.all.each do |term|
+    term.words.each do |word|
+      puts "#{word.word_input}"
+    end
+  end
+
+  user_choice = gets.chomp
+  Term.all.each do |term|
+    term.words.each do |word|
+      if user_choice == word.word_input
+        puts "Press 'd' to add a new definition"
+        puts "Press 'w' to add a new word"
+        choice = gets.chomp
+        if choice == 'd'
+          add_new_definition(term)
+        elsif choice == 'w'
+          add_new_word(term)
+        end
+      # else
+      #   puts 'try again'
+      end
+    end
+  end
 end
 
 def search_term
