@@ -1,4 +1,5 @@
 class Definition
+
   @@all_definitions = []
 
   def initialize(definition_input)
