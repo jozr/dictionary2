@@ -51,7 +51,7 @@ end
 
 def modify_term
 
-  puts "Enter a term to modify"
+  puts "\nEnter a term to modify\n"
   Term.all.each do |term|
     term.words.each do |word|
       puts "#{word.word_input}"
@@ -81,7 +81,8 @@ def search_term
   puts "Enter a word to see the definitions"
   Term.all.each do |term|
     term.words.each do |word|
-      puts "#{word.word_input}"
+
+      # puts "\n#{word.word_input}\n"
     end
   end
 

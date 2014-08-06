@@ -1,5 +1,7 @@
 class Term
 
+  attr_reader :words, :definitions
+
   @@dictionary = []
 
   def initialize
@@ -27,11 +29,7 @@ class Term
     @definitions << definition_object
   end
 
-  def words
-    @words
-  end
-
-  def definitions
-    @definitions
+  def edit_word(edited_word)
+    @words = edited_word
   end
 end

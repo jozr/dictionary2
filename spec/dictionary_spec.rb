@@ -61,6 +61,12 @@ describe Term do
     test_term.definitions.should eq [test_definition, test_definition_two]
   end
 
+  it 'allows users to edit a term word' do
+    test_word = Word.new 'Dog'
+    test_word.edit_word 'Poodle'
+    test_word.word.should eq 'Poodle'
+  end
+
 end
 
 describe Word do
