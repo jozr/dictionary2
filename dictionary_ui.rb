@@ -54,14 +54,24 @@ def modify_term
 end
 
 def search_term
+  puts "Enter a word to see the definitions"
   Term.all.each do |term|
     term.words.each do |word|
-      puts "-#{word.word_input}"
-    end
-    term.definitions.each do |definition|
-      puts "-#{definition.definition_input}"
+      puts "#{word.word_input}"
     end
   end
+
+  user_choice = gets.chomp
+  Term.all.each do |term|
+    term.words.each do |word|
+      if user_choice == word.word_input
+        term.definitions.each do |definition|
+          puts definition.definition_input
+        end
+      end
+    end
+  end
+
 end
 main_menu
 
