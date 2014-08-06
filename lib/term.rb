@@ -8,15 +8,15 @@ class Term
   end
 
   def Term.all
-    @@terms
+    @@dictionary
   end
 
   def Term.clear
-    @@terms = []
+    @@dictionary = []
   end
 
   def save
-    @@terms << self
+    @@dictionary << self
   end
 
   def add_word(word_object)
