@@ -5,43 +5,62 @@ require './lib/word'
 def main_menu
   loop do
     puts "*******Dictionary*******"
+    puts "Press 's' to search for and view terms"
     puts "Press 'a' to add a new term"
-    # puts to add another word to a term
-    # puts to add another definition to a term
-    puts "Press 'v' to view a term"
+    puts "Press 'm' to modify a term"
     puts "Press 'x' to exit"
     main_choice = gets.chomp
 
     if main_choice == 'a'
-      add_term_word
+      add_term
     elsif main_choice == 'x'
       puts "Goodbye."
       exit
-    elsif main_choice == 'v'
-      view_term
+    elsif main_choice == 's'
+      search_term
+    elsif main_choice == 'm'
+      modify_term
     end
   end
 end
 
-def add_term_word
-  Term.new.save
+def add_term
+  new_term = Term.new
+  new_term.save
   puts 'What word would you like to add?'
-  input_add_term = gets.chomp
-  Word.new(input_add_term).save
-  puts "#{input_add_term} added."
-  add_definition
+  add_new_word(new_term)
+  add_new_definition(new_term)
 end
 
-def add_definition
+def add_new_word(term)
+  input_add_term = gets.chomp
+  new_word = Word.new(input_add_term)
+  new_word.save
+  term.add_word(new_word)
+  puts "\n#{input_add_term} added.\n\n"
+end
+
+def add_new_definition(term)
   puts "Please add a definition"
   user_definition = gets.chomp
-  Definition.new(user_definition).save
+  new_definition = Definition.new(user_definition)
+  new_definition.save
+  term.add_definition(new_definition)
   puts "\nNew definition saved\n\n"
 end
 
-def view_term
-  Word.all.each do |looplord|
-    puts "\n\n#{looplord.word_input}"
+def modify_term
+  search_term
+end
+
+def search_term
+  Term.all.each do |term|
+    term.words.each do |word|
+      puts "-#{word.word_input}"
+    end
+    term.definitions.each do |definition|
+      puts "-#{definition.definition_input}"
+    end
   end
 end
 main_menu
