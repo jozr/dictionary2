@@ -1,7 +1,6 @@
 class Term
 
   @@dictionary = []
-  @@terms = []
 
   def initialize
     @words = []

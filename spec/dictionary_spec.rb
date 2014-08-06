@@ -33,6 +33,14 @@ describe Term do
     end
   end
 
+  it 'allows users to add multiple terms' do
+    test_term = Term.new
+    test_term.save
+    test_term_two = Term.new
+    test_term_two.save
+    Term.all.should eq [test_term, test_term_two]
+  end
+
   it 'adds multiple words to the Term' do
     test_term = Term.new
     test_term.save
